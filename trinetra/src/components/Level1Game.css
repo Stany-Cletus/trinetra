@@ -1,0 +1,300 @@
+@import url('https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700&family=Share+Tech+Mono&display=swap');
+
+.game-root {
+  position: fixed;
+  inset: 0;
+  background: #000;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  z-index: 200;
+}
+
+/* ── HUD ── */
+.game-hud {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 56px;
+  background: linear-gradient(180deg, rgba(0,0,0,0.95) 0%, rgba(0,0,0,0.7) 100%);
+  border-bottom: 1px solid rgba(139, 0, 0, 0.4);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 28px;
+  z-index: 10;
+}
+
+.hud-left {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.hud-lives {
+  display: flex;
+  gap: 6px;
+}
+
+.hud-heart {
+  font-size: 20px;
+  transition: all 0.3s;
+}
+
+.hud-heart.alive {
+  color: #cc0000;
+  text-shadow: 0 0 8px rgba(200, 0, 0, 0.7);
+}
+
+.hud-heart.dead {
+  color: rgba(80, 0, 0, 0.3);
+}
+
+.hud-coins {
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 14px;
+  color: #ffd700;
+  letter-spacing: 0.1em;
+  text-shadow: 0 0 8px rgba(255, 215, 0, 0.5);
+}
+
+.hud-center {
+  display: flex;
+  align-items: center;
+}
+
+.hud-letters {
+  display: flex;
+  gap: 6px;
+  align-items: center;
+}
+
+.hud-letter {
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Cinzel Decorative', serif;
+  font-size: 13px;
+  font-weight: 700;
+  border: 1px solid rgba(139, 0, 0, 0.3);
+  transition: all 0.4s;
+}
+
+.hud-letter.empty {
+  color: rgba(80, 0, 0, 0.4);
+  background: rgba(20, 0, 0, 0.5);
+}
+
+.hud-letter.collected {
+  color: #ff3333;
+  background: rgba(80, 0, 0, 0.3);
+  border-color: #8b0000;
+  box-shadow: 0 0 12px rgba(200, 0, 0, 0.5), inset 0 0 8px rgba(200, 0, 0, 0.1);
+  animation: letterCollect 0.5s ease;
+}
+
+@keyframes letterCollect {
+  0% { transform: scale(1.4); }
+  100% { transform: scale(1); }
+}
+
+.hud-right {}
+
+.hud-controls {
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 10px;
+  color: rgba(150, 100, 100, 0.5);
+  letter-spacing: 0.08em;
+}
+
+/* ── Canvas ── */
+.game-canvas {
+  display: block;
+  margin-top: 56px;
+  image-rendering: pixelated;
+}
+
+/* ── Message ── */
+.game-msg {
+  position: absolute;
+  top: 72px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 14px;
+  color: #fff;
+  background: rgba(0, 0, 0, 0.7);
+  padding: 8px 20px;
+  border: 1px solid rgba(200, 0, 0, 0.4);
+  letter-spacing: 0.1em;
+  animation: msgPop 0.3s ease;
+  pointer-events: none;
+}
+
+@keyframes msgPop {
+  from { opacity: 0; transform: translateX(-50%) translateY(-8px); }
+  to { opacity: 1; transform: translateX(-50%) translateY(0); }
+}
+
+/* ── Win Overlay ── */
+.game-win-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.85);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 50;
+  backdrop-filter: blur(4px);
+  animation: overlayFade 0.6s ease forwards;
+}
+
+@keyframes overlayFade {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.game-win-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 24px;
+  padding: 56px 72px;
+  background: rgba(5, 0, 5, 0.95);
+  border: 1px solid rgba(255, 215, 0, 0.3);
+  box-shadow: 0 0 60px rgba(255, 215, 0, 0.1);
+  animation: cardPop 0.5s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+@keyframes cardPop {
+  from { transform: scale(0.9); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
+
+.win-title {
+  font-family: 'Cinzel Decorative', serif;
+  font-size: 22px;
+  color: #ffd700;
+  letter-spacing: 0.25em;
+  text-shadow: 0 0 20px rgba(255, 215, 0, 0.5);
+}
+
+.win-letters {
+  display: flex;
+  gap: 8px;
+}
+
+.win-letter {
+  width: 44px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Cinzel Decorative', serif;
+  font-size: 18px;
+  font-weight: 700;
+  color: #cc0000;
+  background: rgba(80, 0, 0, 0.3);
+  border: 1px solid #8b0000;
+  box-shadow: 0 0 12px rgba(200, 0, 0, 0.4);
+  animation: letterWin 0.4s ease backwards;
+}
+
+.win-letter:nth-child(1) { animation-delay: 0.05s; }
+.win-letter:nth-child(2) { animation-delay: 0.1s; }
+.win-letter:nth-child(3) { animation-delay: 0.15s; }
+.win-letter:nth-child(4) { animation-delay: 0.2s; }
+.win-letter:nth-child(5) { animation-delay: 0.25s; }
+.win-letter:nth-child(6) { animation-delay: 0.3s; }
+.win-letter:nth-child(7) { animation-delay: 0.35s; }
+.win-letter:nth-child(8) { animation-delay: 0.4s; }
+
+@keyframes letterWin {
+  from { transform: translateY(-16px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+.win-coins {
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 16px;
+  color: #ffd700;
+  letter-spacing: 0.2em;
+  text-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
+}
+
+.win-sub {
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 11px;
+  color: rgba(0, 229, 255, 0.5);
+  letter-spacing: 0.15em;
+}
+
+/* ── Game Over ── */
+.game-over-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.92);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 50;
+  backdrop-filter: blur(8px);
+}
+
+.game-over-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  padding: 56px 80px;
+  background: rgba(10, 0, 0, 0.97);
+  border: 1px solid rgba(139, 0, 0, 0.5);
+  box-shadow: 0 0 60px rgba(139, 0, 0, 0.2);
+}
+
+.go-title {
+  font-family: 'Cinzel Decorative', serif;
+  font-size: 28px;
+  color: #cc0000;
+  letter-spacing: 0.25em;
+  text-shadow: 0 0 24px rgba(200, 0, 0, 0.6);
+  animation: glitchText 3s infinite;
+}
+
+@keyframes glitchText {
+  0%, 90%, 100% { text-shadow: 0 0 24px rgba(200, 0, 0, 0.6); transform: translateX(0); }
+  92% { text-shadow: -3px 0 #00e5ff; transform: translateX(-2px); }
+  94% { text-shadow: 3px 0 #ff0040; transform: translateX(2px); }
+  96% { text-shadow: 0 0 24px rgba(200, 0, 0, 0.6); transform: translateX(0); }
+}
+
+.go-sub {
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 12px;
+  color: rgba(200, 100, 100, 0.6);
+  letter-spacing: 0.15em;
+}
+
+.go-retry-btn {
+  margin-top: 8px;
+  padding: 14px 48px;
+  background: rgba(139, 0, 0, 0.2);
+  border: 1px solid #8b0000;
+  cursor: pointer;
+  font-family: 'Cinzel Decorative', serif;
+  font-size: 12px;
+  letter-spacing: 0.3em;
+  color: #cc0000;
+  transition: all 0.3s;
+}
+
+.go-retry-btn:hover {
+  background: rgba(139, 0, 0, 0.4);
+  border-color: #cc0000;
+  box-shadow: 0 0 20px rgba(200, 0, 0, 0.3);
+  color: #ff3333;
+}
