@@ -12,7 +12,7 @@ const SUBSTAGE = {
   ENDING: "ending",
 };
 
-export default function Level1() {
+export default function Level1({ onComplete }) {
   const [substage, setSubstage] = useState(SUBSTAGE.LANDING);
   const [logoAnimDone, setLogoAnimDone] = useState(false);
   const [gameCoins, setGameCoins] = useState(0);
@@ -75,13 +75,32 @@ export default function Level1() {
       )}
 
       {substage === SUBSTAGE.ENDING && (
-        <div className="l1-ending">
-          <div className="l1-ending-inner">
-            <p className="l1-ending-text">LEVEL 1 COMPLETE</p>
-            <p className="l1-ending-sub">Coming soon...</p>
-          </div>
-        </div>
+        <EndingScreen onNext={onComplete} />
       )}
+    </div>
+  );
+}
+
+function EndingScreen({ onNext }) {
+  const [visible, setVisible] = useState(false);
+
+  useEffect(() => {
+    const t = setTimeout(() => setVisible(true), 500);
+    return () => clearTimeout(t);
+  }, []);
+
+  return (
+    <div className={`l1-ending ${visible ? "l1-ending-visible" : ""}`}>
+      <div className="l1-ending-inner">
+        <p className="l1-ending-text">LEVEL 1 COMPLETE</p>
+        <p className="l1-ending-sub">Preparing next threat...</p>
+        <div className="l1-ending-spinner"></div>
+        {onNext && (
+          <button className="l1-ending-next-btn" onClick={onNext}>
+            CONTINUE TO LEVEL 2 →
+          </button>
+        )}
+      </div>
     </div>
   );
 }

@@ -3,6 +3,7 @@ import EnterScreen from "./components/EnterScreen";
 import VolumePopup from "./components/VolumePopup";
 import VideoPlayer from "./components/VideoPlayer";
 import Level1 from "./components/Level1";
+import Level2 from "./components/Level2";
 import MobileBlock from "./components/MobileBlock";
 import FullscreenGuard from "./components/FullscreenGuard";
 import "./App.css";
@@ -13,6 +14,7 @@ const STAGES = {
   VIDEO_ENTRY: "video_entry",
   VIDEO_TRANSITION: "video_transition",
   LEVEL1: "level1",
+  LEVEL2: "level2",
 };
 
 export default function App() {
@@ -100,7 +102,10 @@ export default function App() {
           onEnd={handleTransitionVideoEnd}
         />
       )}
-      {stage === STAGES.LEVEL1 && <Level1 />}
+      {stage === STAGES.LEVEL1 && (
+        <Level1 onComplete={() => setStage(STAGES.LEVEL2)} />
+      )}
+      {stage === STAGES.LEVEL2 && <Level2 />}
     </div>
   );
 }
