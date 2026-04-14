@@ -391,12 +391,10 @@ export default function Level2() {
                   <div className="wifi-side-panel">
                     <div className="wifi-dialog">
                       <div className="wifi-header">
-                        <h2>Wi-Fi</h2>
+                        <h2>Available Networks</h2>
                       </div>
                       <div className="wifi-list">{networkRows}</div>
-                      <button type="button" className="wifi-close" onClick={handleCloseWifiPanel}>
-                        Close
-                      </button>
+                      
                     </div>
                   </div>
                 )}
@@ -408,10 +406,13 @@ export default function Level2() {
       {stage === STAGES.WARNING && (
         <div className="l2-panel warning-screen">
           <div className="warning-card">
-            <h2>Warning</h2>
+            <h2>WARNING</h2>
             <p>
-              You already had a bad experience. Kindly choose a safer network.
+              You already had a bad experience. Kindly reconsider your decision to connect to this network.
             </p>
+            <button type="button" className="l2-safe-network" onClick={handlePasswordConnect}>
+              CHOOSE A SAFER NETWORK
+            </button>
           </div>
         </div>
       )}
@@ -474,7 +475,7 @@ export default function Level2() {
                 <h3>Game Over</h3>
                 <p>You earned {coinsEarned} coins.</p>
                 <button type="button" className="l2-primary-btn" onClick={handleContinueAfterGame}>
-                  Continue to Profile Upload
+                  CONTINUE
                 </button>
               </div>
             )}
@@ -485,8 +486,8 @@ export default function Level2() {
       {stage === STAGES.UPLOAD && (
         <div className="l2-panel upload-screen">
           <div className="upload-card">
-            <h2>Upload Photo</h2>
-            <p>Please choose a clear profile photo for your upload.</p>
+            <h2>UPLOAD PROFILE PHOTO</h2>
+            <p>There are many people in this world you can see them but for them to see you upload your profile photo. <br/ > Note - failing to upload a clear profile photo will isolate you. <br/ > Connect with people to survive in this world</p>
             <button type="button" className="l2-primary-btn" onClick={handleUploadClick}>
               Choose File
             </button>
@@ -503,11 +504,9 @@ export default function Level2() {
                 type="checkbox"
                 checked={checkboxChecked}
                 onChange={handleConfirmUpload}
-              />
-              I have uploaded the proper photo
-            </label>
+              />  </label>
             <div className="upload-total-coins">
-              Total coins available: {totalCoins}
+              CASH BALANCE LEFT = {totalCoins}
             </div>
           </div>
         </div>
@@ -524,7 +523,7 @@ export default function Level2() {
             </div>
             <div className="wanted-copy">
               <p>
-                As your photo has been morphed as shown above. If you don't pay 100 coins it'll be posted in the social media.
+                Your photo has been morphed as shown above. If you don't pay 100 coins it'll be posted in the social media & you will be prisoned in the darkest cell of the jail. You have 210 minutes to pay the ransom and save yourself.
               </p>
             </div>
           </div>

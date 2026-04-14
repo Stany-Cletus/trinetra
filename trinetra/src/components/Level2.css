@@ -852,13 +852,14 @@
 .taskbar-bottom {
   position: fixed;
   bottom: 0;
-  left: 50%;
-  transform: translateX(-50%);
-  width: min(1060px, 100%);
+  left: 0;
+  transform: none;
+  width: 100%;
+  max-width: none;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 6px 10px;
+  padding: 6px 16px;
   background: rgba(20,20,20,0.9);
   backdrop-filter: blur(10px);
   color: white;
