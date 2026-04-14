@@ -229,7 +229,10 @@ export default function WifiSequence({ coins, password, onDone }) {
       {wifiPanelOpen && (
         <div className="ws-wifi-panel">
           <div className="ws-wifi-panel-header">
-            <span>Wi-Fi</span>
+            <div className="ws-wifi-panel-title-group">
+              <span className="ws-wifi-panel-title">Wi-Fi</span>
+              <span className="ws-wifi-panel-subtitle">Password required</span>
+            </div>
             <button className="ws-wifi-toggle">ON</button>
           </div>
           <div className="ws-wifi-list">
@@ -244,7 +247,13 @@ export default function WifiSequence({ coins, password, onDone }) {
                   <span className="ws-wifi-ssid">{net.ssid}</span>
                   <span className="ws-wifi-note">{net.note}</span>
                 </div>
-                <button className="ws-wifi-connect-btn">Connect</button>
+                <button
+                  type="button"
+                  className="ws-wifi-connect-btn"
+                  onClick={e => { e.stopPropagation(); handleNetworkClick(net); }}
+                >
+                  Connect
+                </button>
               </div>
             ))}
           </div>
