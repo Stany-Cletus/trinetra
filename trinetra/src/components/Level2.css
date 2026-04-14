@@ -1,0 +1,1151 @@
+.level2-page {
+  min-height: 100vh;
+  color: #fff;
+  position: relative;
+  overflow: hidden;
+  font-family: 'Share Tech Mono', monospace;
+  background: #02030a;
+}
+
+.level2-page::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at top, rgba(40, 130, 255, 0.16), transparent 32%),
+    radial-gradient(circle at 20% 20%, rgba(0, 255, 200, 0.12), transparent 28%);
+  pointer-events: none;
+}
+
+.level2-logo-top {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  z-index: 20;
+}
+
+.level2-logo-top img {
+  width: 64px;
+  filter: drop-shadow(0 0 20px rgba(56, 189, 248, 0.4));
+}
+
+.l2-landing-panel {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  padding: 0 64px;
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0.64), rgba(0, 0, 0, 0.84)),
+    url('/src/assets/MrX.png') left center / cover no-repeat;
+}
+
+.l2-buffering-page {
+  justify-content: center;
+  background: #000;
+  padding: 0;
+}
+
+.l2-no-network-page {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #000;
+  padding: 0 24px;
+}
+
+.l2-landing-panel::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.32);
+}
+
+.l2-landing-left {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  justify-content: center;
+  width: min(280px, 30vw);
+}
+
+.no-network-card {
+  position: relative;
+  z-index: 1;
+  width: min(520px, 55vw);
+  padding: 36px 32px;
+  border: 2px solid rgba(34, 211, 238, 0.95);
+  background: rgba(0, 0, 0, 0.92);
+  box-shadow: 0 0 30px rgba(34, 211, 238, 0.25), inset 0 0 18px rgba(34, 211, 238, 0.12);
+  border-radius: 24px;
+  text-align: center;
+}
+
+.no-network-card h2 {
+  margin: 0 0 14px;
+  font-size: 2rem;
+  font-weight: 400;
+  letter-spacing: 0.18em;
+  color: #22d3ee;
+  text-transform: uppercase;
+}
+
+.no-network-card p {
+  margin: 0;
+  color: rgba(255, 255, 255, 0.92);
+  font-size: 1rem;
+  font-weight: 300;
+  line-height: 1.8;
+}
+
+.l2-landing-left h1 {
+  font-size: clamp(3rem, 5vw, 4.6rem);
+  line-height: 0.95;
+  letter-spacing: -0.04em;
+  text-transform: uppercase;
+}
+
+.l2-landing-left p {
+  color: rgba(255, 255, 255, 0.86);
+  font-size: 1rem;
+  line-height: 1.85;
+  max-width: 520px;
+}
+
+.l2-explore-btn {
+  width: 100%;
+  max-width: 280px;
+  border: 2px solid rgba(255, 16, 16, 0.95);
+  background: rgba(0, 0, 0, 0.95);
+  color: #ff2a2a;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  font-size: 1.15rem;
+  line-height: 1.35;
+  padding: 20px 24px;
+  border-radius: 16px;
+  cursor: pointer;
+  box-shadow: 0 0 24px rgba(255, 0, 0, 0.35), inset 0 0 10px rgba(255, 0, 0, 0.16);
+  transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.l2-explore-btn:hover {
+  transform: translateY(-2px);
+  background: rgba(0, 0, 0, 1);
+  border-color: #ff0202;
+  box-shadow: 0 0 45px rgba(255, 0, 0, 0.65), inset 0 0 18px rgba(255, 0, 0, 0.2);
+}
+
+.l2-hero-logo {
+  width: min(360px, 100%);
+  margin: 0 auto;
+  display: block;
+  animation: floatLogo 3.5s ease-in-out infinite;
+}
+
+@keyframes floatLogo {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-14px); }
+}
+
+.l2-taskbar-panel,
+.l2-panel {
+  position: relative;
+  min-height: 100vh;
+  padding: 42px 36px;
+  background: radial-gradient(circle at top, rgba(10, 25, 80, 0.28), transparent 32%),
+    linear-gradient(180deg, rgba(4, 8, 18, 0.96), rgba(0, 0, 0, 1) 90%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.l2-taskbar-panel {
+  align-items: flex-end;
+  padding-bottom: 64px;
+}
+
+.taskbar-screen {
+  position: relative;
+  width: min(1060px, 100%);
+  border-radius: 30px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: rgba(8, 12, 24, 0.94);
+  box-shadow: 0 24px 80px rgba(0, 0, 0, 0.35);
+  overflow: visible;
+}
+
+.wifi-side-panel {
+  position: absolute;
+  bottom: 78px;
+  right: 32px;
+  width: min(360px, 100%);
+  max-height: calc(100vh - 140px);
+  padding: 10px;
+  background: transparent;
+  z-index: 10;
+}
+
+.wifi-dialog {
+  width: 100%;
+  min-width: 280px;
+  max-height: 100%;
+  border-radius: 28px;
+  background: rgba(4, 8, 18, 0.98);
+  border: 1px solid rgba(56, 189, 248, 0.18);
+  box-shadow: 0 32px 90px rgba(0, 0, 0, 0.45);
+  padding: 24px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.wifi-close {
+  margin-top: auto;
+  align-self: flex-end;
+  padding: 10px 18px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  background: rgba(255, 255, 255, 0.04);
+  color: #f8fafc;
+  border-radius: 999px;
+  cursor: pointer;
+  transition: transform 0.2s ease, background 0.2s ease;
+}
+
+.wifi-close:hover {
+  background: rgba(255, 255, 255, 0.12);
+  transform: translateY(-1px);
+}
+
+.buffering-screen {
+  min-height: 520px;
+  display: grid;
+  place-items: center;
+  gap: 20px;
+  padding: 72px;
+  text-align: center;
+}
+
+.spinner {
+  width: 96px;
+  height: 96px;
+  border: 8px solid rgba(255, 255, 255, 0.08);
+  border-top-color: #22d3ee;
+  border-right-color: rgba(34, 211, 238, 0.2);
+  border-bottom-color: rgba(34, 211, 238, 0.1);
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+.buffering-screen p {
+  color: rgba(255, 255, 255, 0.78);
+  font-size: 1.05rem;
+}
+
+.taskbar-top {
+  padding: 26px 32px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  color: rgba(226, 232, 240, 0.82);
+}
+
+
+
+.taskbar-left,
+.taskbar-right {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  flex-wrap: wrap;
+}
+
+.taskbar-left span,
+.taskbar-right span,
+.taskbar-icon {
+  color: #f8fafc;
+  font-size: 0.95rem;
+}
+
+.taskbar-trinetra {
+  width: 34px;
+  height: 34px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(56, 189, 248, 0.12);
+  border-radius: 10px;
+  color: #38bdf8;
+  font-weight: 700;
+}
+
+.taskbar-icon {
+  border: none;
+  background: rgba(255, 255, 255, 0.06);
+  width: 44px;
+  height: 44px;
+  border-radius: 14px;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.2s ease;
+}
+
+.taskbar-icon:hover {
+  background: rgba(56, 189, 248, 0.14);
+}
+
+.wifi-dialog,
+.warning-card,
+.password-card,
+.pencil-game-card,
+.upload-card,
+.complete-card {
+  width: min(840px, 100%);
+  border-radius: 30px;
+  background: rgba(0, 0, 0, 0.92);
+  border: 1px solid rgba(56, 189, 248, 0.35);
+  padding: 44px;
+  box-shadow: 0 24px 66px rgba(0, 0, 0, 0.32);
+}
+
+.warning-screen,
+.upload-screen {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #000;
+}
+
+.warning-card,
+.upload-card {
+  max-width: 560px;
+  border-radius: 32px;
+  border: 2px solid rgba(56, 189, 248, 0.9);
+  padding: 40px 36px;
+  background: rgba(6, 10, 18, 0.98);
+}
+
+.final-page {
+  min-height: 100vh;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  padding-right: 40px;
+}
+
+.wanted-card {
+  width: min(340px, 32vw);
+  max-width: 340px;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  background: rgba(0, 0, 0, 0.82);
+  border: 2px solid rgba(255, 255, 255, 0.15);
+  border-radius: 28px;
+  padding: 32px;
+  box-shadow: 0 32px 80px rgba(0, 0, 0, 0.35);
+  margin-left: auto;
+}
+
+.wanted-top-right {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 18px;
+}
+
+.wanted-box {
+  width: 100%;
+  min-height: 90px;
+  display: grid;
+  place-items: center;
+  border-radius: 18px;
+  border: 2px solid rgba(244, 62, 86, 0.95);
+  background: rgba(0, 0, 0, 0.7);
+  color: #f43f5e;
+  font-size: 1.5rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  box-shadow: 0 0 22px rgba(244, 62, 86, 0.25);
+}
+
+.wanted-empty-box {
+  width: 100%;
+  height: 180px;
+  border-radius: 20px;
+  border: 2px solid rgba(244, 62, 86, 0.9);
+  background: rgba(0, 0, 0, 0.45);
+  box-shadow: 0 0 18px rgba(244, 62, 86, 0.2);
+}
+
+.wanted-copy {
+  width: 100%;
+  text-align: right;
+}
+
+.wanted-copy p {
+  margin: 0;
+  color: #f43f5e;
+  font-size: 1rem;
+  line-height: 1.8;
+}
+
+.wanted-content h2 {
+  margin: 0 0 18px;
+  font-size: clamp(2rem, 3vw, 3rem);
+  color: #38bdf8;
+}
+
+.stolen-text {
+  margin: 0 0 26px;
+  color: rgba(226, 232, 240, 0.82);
+  font-size: 1.1rem;
+}
+
+.threat-box {
+  border: 2px solid #ef4444;
+  background: rgba(26, 8, 12, 0.9);
+  color: #f87171;
+  padding: 22px;
+  border-radius: 24px;
+  font-size: 0.98rem;
+  line-height: 1.6;
+}
+
+.wifi-connect {
+  padding: 10px 18px;
+  border: 1px solid rgba(56, 189, 248, 0.9);
+  background: rgba(0, 0, 0, 0.85);
+  border-radius: 999px;
+  color: #38bdf8;
+  font-size: 0.9rem;
+  opacity: 0;
+  transition: opacity 0.15s ease, transform 0.2s ease;
+}
+
+.wifi-item:hover .wifi-connect,
+.wifi-item.selected .wifi-connect {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.wifi-item:hover .wifi-network-status,
+.wifi-item.selected .wifi-network-status {
+  background: rgba(8, 16, 30, 0.96);
+}
+
+.wifi-header {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 26px;
+}
+
+.wifi-header h2,
+.warning-card h2,
+.password-card h2,
+.pencil-game-header h2,
+.upload-card h2,
+.complete-card h2 {
+  margin: 0;
+  font-size: clamp(2rem, 3vw, 3rem);
+}
+
+.wifi-header p,
+.warning-card p,
+.password-card p,
+.upload-card p,
+.complete-card p {
+  color: rgba(255, 255, 255, 0.72);
+  line-height: 1.8;
+}
+
+.wifi-list {
+  display: grid;
+  gap: 16px;
+  margin-bottom: 28px;
+}
+
+.wifi-item {
+  width: 100%;
+  border-radius: 22px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  padding: 18px 26px;
+  background: rgba(0, 0, 0, 0.8);
+  color: #fff;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+  transition: transform 0.2s ease, border-color 0.2s ease, background 0.2s ease;
+}
+
+.wifi-item:hover,
+.wifi-item.selected {
+  border-color: #22d3ee;
+  background: rgba(0, 0, 0, 1);
+  transform: translateY(-2px);
+}
+
+.wifi-item:hover .wifi-connect,
+.wifi-item.selected .wifi-connect {
+  opacity: 1;
+}
+
+.wifi-info {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 6px;
+}
+
+.wifi-network-name {
+  font-weight: 600;
+  font-size: 1rem;
+}
+
+.wifi-network-status {
+  display: inline-flex;
+  color: rgba(226, 232, 240, 0.68);
+  font-size: 0.92rem;
+  font-weight: 300;
+}
+
+.wifi-item:hover .wifi-network-status,
+.wifi-item.selected .wifi-network-status {
+  background: rgba(8, 16, 30, 0.96);
+}
+
+.wifi-submit,
+.l2-primary-btn,
+.l2-secondary-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  border: none;
+  border-radius: 999px;
+  padding: 16px 30px;
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 0.95rem;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+}
+
+.l2-primary-btn,
+.wifi-submit {
+  background: linear-gradient(135deg, rgba(56, 189, 248, 0.2), rgba(14, 165, 233, 0.12));
+  color: #38bdf8;
+  border: 1px solid rgba(56, 189, 248, 0.35);
+}
+
+.l2-secondary-btn {
+  background: rgba(255, 255, 255, 0.04);
+  color: #f8fafc;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+.l2-primary-btn:hover,
+.l2-secondary-btn:hover,
+.wifi-submit:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 0 28px rgba(56, 189, 248, 0.18);
+}
+
+.password-card input {
+  width: 100%;
+  border-radius: 18px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  color: #fff;
+  padding: 16px 18px;
+  margin: 24px 0 0;
+  outline: none;
+}
+
+.error-text {
+  color: #fb7185;
+  margin-top: 10px;
+}
+
+.pencil-game-header {
+  display: flex;
+  justify-content: space-between;
+  gap: 24px;
+  flex-wrap: wrap;
+  margin-bottom: 24px;
+}
+
+.pencil-stats {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(120px, auto));
+  gap: 12px;
+  color: rgba(255, 255, 255, 0.75);
+}
+
+.pencil-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 18px;
+  margin-bottom: 24px;
+}
+
+.pencil-card {
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 24px;
+  min-height: 120px;
+  display: grid;
+  place-items: center;
+  gap: 12px;
+  cursor: pointer;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.24);
+  color: #020617;
+  font-weight: 700;
+  transition: transform 0.2s ease, filter 0.2s ease;
+}
+
+.pencil-card:hover {
+  transform: translateY(-4px);
+  filter: brightness(1.04);
+}
+
+.pencil-actions {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.game-over-banner {
+  margin-top: 28px;
+  padding: 24px;
+  border-radius: 24px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(56, 189, 248, 0.18);
+}
+
+.maze-wrapper {
+  display: grid;
+  gap: 20px;
+  max-width: 1000px;
+  width: min(100%, 1000px);
+  margin: 0 auto;
+  align-items: center;
+}
+
+.maze-status {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(120px, 1fr));
+  gap: 14px;
+  padding: 20px 22px;
+  border-radius: 22px;
+  background: rgba(3, 6, 16, 0.85);
+  border: 1px solid rgba(56, 189, 248, 0.14);
+  color: rgba(255, 255, 255, 0.82);
+  font-size: 0.95rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.maze-container {
+  display: grid;
+  gap: 24px;
+  align-items: center;
+}
+
+.maze-grid {
+  display: grid;
+  gap: 2px;
+  padding: 18px;
+  border-radius: 20px;
+  background: #000;
+  border: 2px solid rgba(248, 113, 113, 0.7);
+  box-shadow: inset 0 0 24px rgba(248, 113, 113, 0.12), 0 0 28px rgba(248, 113, 113, 0.18);
+}
+
+.maze-cell {
+  width: 100%;
+  aspect-ratio: 1;
+  border-radius: 6px;
+  display: grid;
+  place-items: center;
+  position: relative;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  color: transparent;
+  overflow: hidden;
+}
+
+.maze-cell.wall {
+  background: #000;
+  border: 1px solid rgba(248, 113, 113, 0.6);
+  box-shadow: inset 0 0 12px rgba(248, 113, 113, 0.22), 0 0 10px rgba(248, 113, 113, 0.12);
+}
+
+.maze-cell.path,
+.maze-cell.coin,
+.maze-cell.goal,
+.maze-cell.skull {
+  background: #020202;
+  border: 1px solid rgba(248, 113, 113, 0.18);
+}
+
+.maze-cell.goal {
+  color: #facc15;
+}
+
+.maze-cell.path::before,
+.maze-cell.goal::before,
+.maze-cell.coin::before,
+.maze-cell.skull::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 50%;
+  height: 6px;
+  background: rgba(248, 113, 113, 0.95);
+  box-shadow: 0 0 14px rgba(248, 113, 113, 0.55);
+  border-radius: 999px;
+  opacity: 1;
+}
+
+.maze-cell.path::after,
+.maze-cell.goal::after,
+.maze-cell.coin::after,
+.maze-cell.skull::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 50%;
+  width: 6px;
+  background: rgba(248, 113, 113, 0.95);
+  box-shadow: 0 0 14px rgba(248, 113, 113, 0.55);
+  border-radius: 999px;
+  opacity: 1;
+}
+.maze-cell.goal::before,
+.maze-cell.goal::after {
+  background: rgba(248, 113, 113, 1);
+  box-shadow: 0 0 22px rgba(248, 113, 113, 0.85);
+}
+
+.maze-cell.path.horizontal::after,
+.maze-cell.goal.horizontal::after,
+.maze-cell.coin.horizontal::after {
+  opacity: 0;
+}
+
+.maze-cell.path.vertical::before,
+.maze-cell.goal.vertical::before,
+.maze-cell.coin.vertical::before {
+  opacity: 0;
+}
+
+.maze-cell.path.corner-tr::before,
+.maze-cell.goal.corner-tr::before,
+.maze-cell.coin.corner-tr::before {
+  left: 50%;
+  width: 50%;
+}
+
+.maze-cell.path.corner-tr::after,
+.maze-cell.goal.corner-tr::after,
+.maze-cell.coin.corner-tr::after {
+  top: 0;
+  bottom: 50%;
+}
+
+.maze-cell.path.corner-tl::before,
+.maze-cell.goal.corner-tl::before,
+.maze-cell.coin.corner-tl::before {
+  left: 0;
+  width: 50%;
+}
+
+.maze-cell.path.corner-tl::after,
+.maze-cell.goal.corner-tl::after,
+.maze-cell.coin.corner-tl::after {
+  top: 0;
+  bottom: 50%;
+}
+
+.maze-cell.path.corner-br::before,
+.maze-cell.goal.corner-br::before,
+.maze-cell.coin.corner-br::before {
+  left: 50%;
+  width: 50%;
+}
+
+.maze-cell.path.corner-br::after,
+.maze-cell.goal.corner-br::after,
+.maze-cell.coin.corner-br::after {
+  top: 50%;
+  bottom: 0;
+}
+
+.maze-cell.path.corner-bl::before,
+.maze-cell.goal.corner-bl::before,
+.maze-cell.coin.corner-bl::before {
+  left: 0;
+  width: 50%;
+}
+
+.maze-cell.path.corner-bl::after,
+.maze-cell.goal.corner-bl::after,
+.maze-cell.coin.corner-bl::after {
+  top: 50%;
+  bottom: 0;
+}
+
+.maze-cell.path.tee-up::after,
+.maze-cell.goal.tee-up::after,
+.maze-cell.coin.tee-up::after {
+  top: 0;
+  bottom: 50%;
+}
+
+.maze-cell.path.tee-down::after,
+.maze-cell.goal.tee-down::after,
+.maze-cell.coin.tee-down::after {
+  top: 50%;
+  bottom: 0;
+}
+
+.maze-cell.path.tee-left::before,
+.maze-cell.goal.tee-left::before,
+.maze-cell.coin.tee-left::before {
+  left: 50%;
+  width: 50%;
+}
+
+.maze-cell.path.tee-right::before,
+.maze-cell.goal.tee-right::before,
+.maze-cell.coin.tee-right::before {
+  left: 0;
+  width: 50%;
+}
+
+.maze-cell.path.cross::before,
+.maze-cell.goal.cross::before,
+.maze-cell.coin.cross::before,
+.maze-cell.path.cross::after,
+.maze-cell.goal.cross::after,
+.maze-cell.coin.cross::after {
+  opacity: 1;
+}
+
+.maze-cell.path.dot::before,
+.maze-cell.goal.dot::before,
+.maze-cell.coin.dot::before,
+.maze-cell.path.dot::after,
+.maze-cell.goal.dot::after,
+.maze-cell.coin.dot::after {
+  opacity: 0;
+}
+
+.maze-cell.goal {
+  color: #facc15;
+}
+
+.maze-cell.coin {
+  color: #fde047;
+}
+
+.maze-cell.skull {
+  color: #f87171;
+}
+
+.maze-cell.player {
+  background: transparent;
+  border: none;
+  box-shadow: none;
+}
+
+.maze-player {
+  display: grid;
+  place-items: center;
+  width: 18px;
+  height: 24px;
+  position: relative;
+}
+
+.maze-player-head {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: #fff;
+  box-shadow: 0 0 8px rgba(255, 255, 255, 0.95);
+}
+
+.maze-player-body {
+  width: 4px;
+  height: 12px;
+  margin-top: 3px;
+  background: #fff;
+  border-radius: 999px;
+  box-shadow: 0 0 8px rgba(255, 255, 255, 0.9);
+}
+
+.maze-instructions {
+  margin: 0;
+  color: rgba(255, 255, 255, 0.75);
+  font-size: 1rem;
+  text-align: center;
+  max-width: 680px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.upload-card {
+  display: grid;
+  gap: 22px;
+}
+
+.upload-file-name {
+  color: rgba(255, 255, 255, 0.72);
+}
+
+.upload-checkbox {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  color: #f8fafc;
+  cursor: pointer;
+}
+
+.upload-checkbox input {
+  width: 18px;
+  height: 18px;
+  accent-color: #38bdf8;
+}
+
+.complete-card {
+  text-align: center;
+}
+
+.complete-card p {
+  color: rgba(255, 255, 255, 0.76);
+}
+
+@media (max-width: 1024px) {
+  .l2-landing-panel {
+    grid-template-columns: 1fr;
+    padding: 32px;
+  }
+
+  .taskbar-screen,
+  .wifi-dialog,
+  .warning-card,
+  .password-card,
+  .pencil-game-card,
+  .upload-card,
+  .complete-card {
+    padding: 28px;
+  }
+}
+
+@media (max-width: 720px) {
+  .l2-landing-left {
+    align-items: center;
+    text-align: center;
+  }
+
+  .taskbar-bottom {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .wifi-header,
+  .pencil-game-header {
+    align-items: center;
+  }
+}
+
+.taskbar-left {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.tb-weather {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  color: white;
+  font-size: 12px;
+  margin-right: 8px;
+}
+
+.tb-icon-btn {
+  background: transparent;
+  border: none;
+  padding: 6px;
+  border-radius: 6px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.tb-icon-btn:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+.taskbar-bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 6px 10px;
+  background: rgba(20,20,20,0.9);
+  backdrop-filter: blur(10px);
+  color: white;
+}
+
+.taskbar-center {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.taskbar-left,
+.taskbar-right {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.tb-icon, .tb-icon-btn {
+  padding: 6px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.tb-icon:hover, .tb-icon-btn:hover {
+  background: rgba(255,255,255,0.1);
+}
+
+.tb-search {
+  display: flex;
+  gap: 6px;
+  padding: 6px 12px;
+  border-radius: 20px;
+  background: rgba(255,255,255,0.1);
+  font-size: 13px;
+}
+
+.tb-time {
+  display: flex;
+  flex-direction: column;
+  font-size: 11px;
+  text-align: right;
+}
+
+.maze-screen {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #000;
+}
+
+.maze-wrapper {
+  width: min(960px, 100%);
+  padding: 24px;
+  background: rgba(0, 0, 0, 0.96);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 28px;
+  box-shadow: 0 0 60px rgba(255, 0, 0, 0.15);
+}
+
+.maze-status {
+  display: flex;
+  justify-content: space-between;
+  gap: 14px;
+  color: #f8fafc;
+  font-size: 0.95rem;
+  margin-bottom: 18px;
+}
+
+.maze-grid {
+  display: grid;
+  gap: 2px;
+  justify-content: center;
+  margin: 0 auto;
+  background: #050505;
+  padding: 10px;
+  border-radius: 18px;
+}
+
+.maze-cell {
+  width: 28px;
+  height: 28px;
+  display: grid;
+  place-items: center;
+  font-size: 0.85rem;
+}
+
+.maze-cell.wall {
+  background: #110000;
+  border: 1px solid rgba(244, 62, 86, 0.5);
+  box-shadow: inset 0 0 10px rgba(244, 62, 86, 0.35);
+}
+
+.maze-cell.path {
+  background: #020202;
+}
+
+.maze-cell.coin {
+  background: #020202;
+  color: #fbbf24;
+}
+
+.maze-cell.goal {
+  background: rgba(244, 62, 86, 0.15);
+  border: 1px solid rgba(244, 62, 86, 0.85);
+  color: #f87171;
+  box-shadow: 0 0 18px rgba(244, 62, 86, 0.4);
+}
+
+.maze-player {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: #38bdf8;
+  box-shadow: 0 0 12px rgba(56, 189, 248, 0.8);
+}
+
+.maze-start {
+  font-size: 0.55rem;
+  color: #f43f5e;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.maze-start-label {
+  margin-top: 12px;
+  text-align: center;
+  color: #f43f5e;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+}
+
+.maze-instructions {
+  margin-top: 12px;
+  color: #f87171;
+  font-size: 0.95rem;
+  text-align: center;
+}

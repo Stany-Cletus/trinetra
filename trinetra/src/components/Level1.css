@@ -42,15 +42,24 @@
 
 .logo-topleft {
   top: 24px;
-  left: 132px;
-  transform: translate(0, 0);
+  right: 32px;
+  left: auto;
+  transform: none;
 }
 
 .l1-logo-img {
-  width: 220px;
+  width: 260px;
   object-fit: contain;
   filter: drop-shadow(0 0 16px rgba(180, 0, 0, 0.6));
   transition: width 1.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.logo-center .l1-logo-img {
+  width: 480px;
+}
+
+.logo-topleft .l1-logo-img {
+  width: 220px;
 }
 
 .logo-center .l1-logo-img {
@@ -64,19 +73,21 @@
 /* ── Landing Content ── */
 .l1-landing-content {
   position: absolute;
-  top: 50%;
-  left: 18%;
-  transform: translate(-50%, -50%);
+  top: 52%;
+  left: 68px;
+  transform: translateY(-50%);
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: flex-start;
+  text-align: left;
   z-index: 20;
   animation: landingFadeIn 0.8s ease forwards;
+  max-width: 380px;
 }
 
 @keyframes landingFadeIn {
-  from { opacity: 0; transform: translate(-50%, -40%); }
-  to { opacity: 1; transform: translate(-50%, -50%); }
+  from { opacity: 0; transform: translateY(-40%); }
+  to { opacity: 1; transform: translateY(-50%); }
 }
 
 .l1-enter-btn {

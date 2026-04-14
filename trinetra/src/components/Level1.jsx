@@ -9,10 +9,9 @@ const SUBSTAGE = {
   GAME: "game",
   BUFFER: "buffer",
   WIFI: "wifi",
-  ENDING: "ending",
 };
 
-export default function Level1() {
+export default function Level1({ onComplete }) {
   const [substage, setSubstage] = useState(SUBSTAGE.LANDING);
   const [logoAnimDone, setLogoAnimDone] = useState(false);
   const [gameCoins, setGameCoins] = useState(0);
@@ -70,17 +69,8 @@ export default function Level1() {
         <WifiSequence
           coins={gameCoins}
           password={collectedLetters.join("")}
-          onDone={() => setSubstage(SUBSTAGE.ENDING)}
+          onDone={onComplete}
         />
-      )}
-
-      {substage === SUBSTAGE.ENDING && (
-        <div className="l1-ending">
-          <div className="l1-ending-inner">
-            <p className="l1-ending-text">LEVEL 1 COMPLETE</p>
-            <p className="l1-ending-sub">Coming soon...</p>
-          </div>
-        </div>
       )}
     </div>
   );
