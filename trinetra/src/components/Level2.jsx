@@ -160,11 +160,11 @@ export default function Level2() {
 
   const handlePasswordConnect = () => {
     if (!password.trim()) {
-      setWifiError("Enter the network name as password.");
+      setWifiError("ENTER PASSWORD");
       return;
     }
     if (password.trim() !== selectedNetwork) {
-      setWifiError("Password incorrect. Use the exact network name.");
+      setWifiError("INCORRECT PASSWORD");
       return;
     }
     setStage(STAGES.PENCIL_GAME);
@@ -227,8 +227,10 @@ export default function Level2() {
       onClick={() => handleSelectNetwork(network.id)}
     >
       <div className="wifi-info">
-        <span className="wifi-network-name">{network.label}</span>
-        <span className="wifi-network-status">{network.status}</span>
+        <div className="wifi-title">
+          <span className="wifi-network-name">{network.label}</span>
+          <span className={`wifi-network-status ${network.type}`}>{network.status}</span>
+        </div>
       </div>
       <button
         type="button"
@@ -236,37 +238,19 @@ export default function Level2() {
         onClick={(e) => {
           e.stopPropagation();
           handleWifiConnect(network.id);
-        }}
-      >
+        }}>
         Connect
       </button>
     </div>
   ));
 
-  const pencilButtons = pencils.map((pencil) => (
-    <button
-      key={pencil.id}
-      type="button"
-      className="pencil-card"
-      onClick={() => handlePencilClick(pencil)}
-      style={{ background: pencil.color }}
-    >
-      <span>{pencil.label}</span>
-      <strong>#{pencil.order}</strong>
-    </button>
-  ));
-
   return (
     <div className="level2-page">
-      <div className="level2-logo-top">
-        <img src="/src/assets/Trinetra_logo.png" alt="Trinetra" />
-      </div>
-
       {stage === STAGES.MRX_LANDING && (
         <div className="l2-landing-panel" style={{ backgroundImage: "url(/src/assets/MrX.png)" }}>
           <div className="l2-landing-left">
             <button className="l2-explore-btn" onClick={handleExplore}>
-              EXPLORE THE WORLD<br />FULL OF ADVENTURES
+              EXPLORE THE WORLD FULL OF ADVENTURES
             </button>
           </div>
         </div>
@@ -391,10 +375,11 @@ export default function Level2() {
                   <div className="wifi-side-panel">
                     <div className="wifi-dialog">
                       <div className="wifi-header">
+                        <div className="wifi-header-title">
                         <h2>Available Networks</h2>
                       </div>
+                      </div>
                       <div className="wifi-list">{networkRows}</div>
-                      
                     </div>
                   </div>
                 )}
@@ -407,9 +392,7 @@ export default function Level2() {
         <div className="l2-panel warning-screen">
           <div className="warning-card">
             <h2>WARNING</h2>
-            <p>
-              You already had a bad experience. Kindly reconsider your decision to connect to this network.
-            </p>
+            <p> You already had a bad experience. Kindly reconsider your decision to connect to this network.</p>
             <button type="button" className="l2-safe-network" onClick={handlePasswordConnect}>
               CHOOSE A SAFER NETWORK
             </button>
@@ -449,40 +432,6 @@ export default function Level2() {
         />
       )}
 
-      {stage === STAGES.PENCIL_GAME && (
-        <div className="l2-panel">
-          <div className="pencil-game-card">
-            <div className="pencil-game-header">
-              <div>
-                <h2>Pencil Order Challenge</h2>
-                <p>Pick pencils in ascending order from 1 to 8. 3 wrong picks ends the game.</p>
-              </div>
-              <div className="pencil-stats">
-                <span>Next: {nextOrder}</span>
-                <span>Correct: {correctCount}</span>
-                <span>Wrong: {wrongCount} / 3</span>
-                <span>Coins: {coinsEarned}</span>
-              </div>
-            </div>
-            <div className="pencil-grid">{pencilButtons}</div>
-            <div className="pencil-actions">
-              <button type="button" className="l2-secondary-btn" onClick={handleEndGame}>
-                End Game
-              </button>
-            </div>
-            {gameFinished && (
-              <div className="game-over-banner">
-                <h3>Game Over</h3>
-                <p>You earned {coinsEarned} coins.</p>
-                <button type="button" className="l2-primary-btn" onClick={handleContinueAfterGame}>
-                  CONTINUE
-                </button>
-              </div>
-            )}
-          </div>
-        </div>
-      )}
-
       {stage === STAGES.UPLOAD && (
         <div className="l2-panel upload-screen">
           <div className="upload-card">
@@ -499,14 +448,8 @@ export default function Level2() {
               onChange={handleFileChange}
             />
             <p className="upload-file-name">{fileName}</p>
-            <label className="upload-checkbox">
-              <input
-                type="checkbox"
-                checked={checkboxChecked}
-                onChange={handleConfirmUpload}
-              />  </label>
             <div className="upload-total-coins">
-              CASH BALANCE LEFT = {totalCoins}
+              CASH BALANCE= {totalCoins}
             </div>
           </div>
         </div>
@@ -516,9 +459,7 @@ export default function Level2() {
         <div className="l2-panel final-page" style={{ backgroundImage: "url(/src/assets/MrX.png)" }}>
           <div className="wanted-card">
             <div className="wanted-top-right">
-              <div className="wanted-box">
-                <span>WANTED</span>
-              </div>
+              <p>WANTED</p>
               <div className="wanted-empty-box" />
             </div>
             <div className="wanted-copy">
