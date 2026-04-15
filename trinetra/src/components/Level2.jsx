@@ -150,24 +150,31 @@ export default function Level2() {
     setWifiError("");
   };
 
+  const handleChooseSaferNetwork = () => {
+    setStage(STAGES.TASKBAR);
+    setShowWifiPanel(true);
+  };
+
   const handleWifiConnect = (networkId) => {
     const chosenNetwork = WIFI_NETWORKS.find((item) => item.id === networkId) || WIFI_NETWORKS.find((item) => item.id === selectedNetwork);
     if (!chosenNetwork) return;
     setSelectedNetwork(chosenNetwork.id);
     setShowWifiPanel(false);
+    if (chosenNetwork.id === "IITT") {
+      setStage(STAGES.WARNING);
+      return;
+    }
+    if (chosenNetwork.type === "password") {
+      setStage(STAGES.PASSWORD);
+      return;
+    }
     setStage(STAGES.MAZE_GAME);
   };
 
   const handlePasswordConnect = () => {
-    if (!password.trim()) {
-      setWifiError("ENTER PASSWORD");
-      return;
-    }
-    if (password.trim() !== selectedNetwork) {
-      setWifiError("INCORRECT PASSWORD");
-      return;
-    }
-    setStage(STAGES.PENCIL_GAME);
+    setWifiError("");
+    setPassword("");
+    setStage(STAGES.MAZE_GAME);
   };
 
   const handlePencilClick = (pencil) => {
@@ -209,6 +216,7 @@ export default function Level2() {
       setFileName(file.name);
       setFileUploaded(true);
       setUploadedPhoto(URL.createObjectURL(file));
+      setStage(STAGES.COMPLETE);
     }
   };
 
@@ -220,6 +228,10 @@ export default function Level2() {
     }
   };
 
+  const handlePayRansom = () => {
+    setTotalCoins((prev) => Math.max(prev - 100, 0));
+  };
+
   const networkRows = WIFI_NETWORKS.map((network) => (
     <div
       key={network.id}
@@ -229,8 +241,8 @@ export default function Level2() {
       <div className="wifi-info">
         <div className="wifi-title">
           <span className="wifi-network-name">{network.label}</span>
-          <span className={`wifi-network-status ${network.type}`}>{network.status}</span>
         </div>
+        <span className={`wifi-network-status ${network.type}`}>{network.status}</span>
       </div>
       <button
         type="button"
@@ -392,9 +404,9 @@ export default function Level2() {
         <div className="l2-panel warning-screen">
           <div className="warning-card">
             <h2>WARNING</h2>
-            <p> You already had a bad experience. Kindly reconsider your decision to connect to this network.</p>
-            <button type="button" className="l2-safe-network" onClick={handlePasswordConnect}>
-              CHOOSE A SAFER NETWORK
+            <p>You already had a bad experience. So think once again before connecting.</p>
+            <button type="button" className="l2-safe-network" onClick={handleChooseSaferNetwork}>
+              Choose a safer network
             </button>
           </div>
         </div>
@@ -460,12 +472,27 @@ export default function Level2() {
           <div className="wanted-card">
             <div className="wanted-top-right">
               <p>WANTED</p>
-              <div className="wanted-empty-box" />
+              <div className="wanted-empty-box">
+                {uploadedPhoto && (
+                  <img src={uploadedPhoto} alt="Uploaded profile" />
+                )}
+              </div>
             </div>
             <div className="wanted-copy">
               <p>
                 Your photo has been morphed as shown above. If you don't pay 100 coins it'll be posted in the social media & you will be prisoned in the darkest cell of the jail. You have 210 minutes to pay the ransom and save yourself.
               </p>
+              <div className="ransom-action">
+                <button
+                  type="button"
+                  className="l2-primary-btn ransom-btn"
+                  onClick={handlePayRansom}
+                  disabled={totalCoins < 100}
+                >
+                  Pay 100 🪙
+                </button>
+                <p className="ransom-balance">Balance: {totalCoins} 🪙</p>
+              </div>
             </div>
           </div>
         </div>

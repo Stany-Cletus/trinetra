@@ -201,6 +201,7 @@
   overflow: hidden;
   display: flex;
   flex-direction: column;
+  font-family: Arial, Helvetica, sans-serif;
 }
 
 .wifi-close {
@@ -405,12 +406,55 @@
 }
 
 .warning-card,
-.upload-card {
+.upload-card,
+.password-card {
   max-width: 560px;
   border-radius: 32px;
   border: 2px solid rgba(56, 189, 248, 0.9);
   padding: 40px 36px;
   background: rgba(6, 10, 18, 0.98);
+}
+
+.warning-card,
+.password-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 24px;
+}
+
+.warning-card {
+  border-color: rgba(248, 113, 113, 0.95);
+  box-shadow: 0 24px 60px rgba(244, 63, 94, 0.24);
+}
+
+.warning-card h2,
+.password-card h2 {
+  color: #ff1a4d;
+}
+
+.warning-card p,
+.password-card p {
+  color: rgba(255, 255, 255, 0.92);
+  max-width: 420px;
+}
+
+.l2-safe-network {
+  background: rgba(0, 0, 0, 0.96);
+  color: #ff1a4d;
+  border: 2px solid #ff1a4d;
+  padding: 16px 26px;
+  border-radius: 999px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  transition: transform 0.16s ease, box-shadow 0.2s ease, background 0.2s ease;
+}
+
+.l2-safe-network:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 0 18px rgba(255, 26, 77, 0.3);
 }
 
 .final-page {
@@ -453,11 +497,39 @@
   border: 2px solid rgba(244, 62, 86, 0.9);
   background: rgba(0, 0, 0, 0.45);
   box-shadow: 0 0 18px rgba(244, 62, 86, 0.2);
+  overflow: hidden;
+  display: grid;
+  place-items: center;
+}
+
+.wanted-empty-box img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
 }
 
 .wanted-copy {
   width: 100%;
   text-align: right;
+}
+
+.ransom-action {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 14px;
+  margin-top: 18px;
+}
+
+.ransom-action .ransom-btn {
+  min-width: 160px;
+}
+
+.ransom-balance {
+  margin: 0;
+  color: #fff;
+  font-size: 0.95rem;
 }
 
 .wanted-copy p {
@@ -595,15 +667,13 @@
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  gap: 4px;
+  gap: 6px;
   min-width: 0;
 }
 
 .wifi-title {
   display: flex;
   align-items: center;
-  flex-wrap: wrap;
-  gap: 10px;
   width: 100%;
 }
 
@@ -617,33 +687,26 @@
 }
 
 .wifi-network-status {
-  display: inline-flex;
-  align-items: center;
-  padding: 6px 10px;
-  border-radius: 999px;
-  background: rgba(255, 255, 255, 0.06);
-  color: rgba(226, 232, 240, 0.88);
-  font-size: 0.88rem;
-  font-weight: 500;
+  display: block;
+  padding: 4px 0 0;
+  color: rgba(209, 213, 219, 0.8);
+  font-size: 0.82rem;
+  font-weight: 400;
   font-family: inherit;
   text-transform: none;
-  line-height: 1.2;
+  line-height: 1.4;
   white-space: nowrap;
 }
 
-.wifi-network-status.free {
-  border: 1px solid rgba(34, 211, 238, 0.32);
-  color: #a5f3fc;
-}
-
+.wifi-network-status.free,
 .wifi-network-status.password {
-  border: 1px solid rgba(248, 113, 113, 0.32);
-  color: #fda4af;
+  border: none;
+  color: rgba(209, 213, 219, 0.8);
 }
 
 .wifi-item:hover .wifi-network-status,
 .wifi-item.selected .wifi-network-status {
-  background: rgba(8, 16, 30, 0.96);
+  background: transparent;
 }
 
 .wifi-submit,
@@ -669,10 +732,34 @@
   border: 1px solid rgba(56, 189, 248, 0.35);
 }
 
+.password-card .l2-primary-btn {
+  background: rgba(0, 0, 0, 0.96);
+  color: #ff1a4d;
+  border: 2px solid #ff1a4d;
+  box-shadow: 0 0 20px rgba(255, 26, 77, 0.28);
+}
+
+.password-card .l2-primary-btn:hover {
+  background: rgba(16, 0, 0, 0.96);
+  box-shadow: 0 0 28px rgba(255, 26, 77, 0.45);
+}
+
 .l2-secondary-btn {
   background: rgba(255, 255, 255, 0.04);
   color: #f8fafc;
   border: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+.l2-safe-network {
+  background: rgba(0, 0, 0, 0.96);
+  color: #ff1a4d;
+  border: 2px solid #ff1a4d;
+  padding: 16px 26px;
+  border-radius: 999px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  transition: transform 0.16s ease, box-shadow 0.2s ease, background 0.2s ease;
 }
 
 .l2-primary-btn:hover,
@@ -685,12 +772,17 @@
 .password-card input {
   width: 100%;
   border-radius: 18px;
-  background: rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(255, 255, 255, 0.12);
+  background: rgba(18, 0, 0, 0.85);
+  border: 1px solid rgba(255, 26, 77, 0.6);
   color: #fff;
   padding: 16px 18px;
   margin: 24px 0 0;
   outline: none;
+  box-shadow: inset 0 0 18px rgba(255, 26, 77, 0.12);
+}
+
+.password-card input::placeholder {
+  color: rgba(255, 255, 255, 0.6);
 }
 
 .error-text {
@@ -795,28 +887,24 @@
   mix-blend-mode: multiply;
 }
 
-.maze-overlay {
-  position: absolute;
-  top: 18px;
-  right: 18px;
+.maze-hud {
   display: flex;
-  flex-direction: column;
-  align-items: flex-end;
-  gap: 8px;
-  z-index: 2;
-  color: #ffddbf;
-  text-shadow: 0 0 12px rgba(255, 136, 112, 0.28);
-  background: rgba(10, 4, 8, 0.65);
-  padding: 12px 16px;
-  border-radius: 16px;
-  border: 1px solid rgba(255, 90, 90, 0.12);
+  justify-content: space-between;
+  align-items: center;
+  gap: 18px;
+  width: 100%;
+  padding: 16px 22px;
+  border-radius: 24px;
+  background: rgba(10, 4, 8, 0.78);
+  border: 1px solid rgba(255, 90, 90, 0.18);
+  box-shadow: 0 24px 54px rgba(0, 0, 0, 0.24);
 }
 
-.maze-overlay span {
-  font-size: 13px;
+.maze-hud span {
+  font-size: 0.95rem;
   font-weight: 700;
   text-transform: uppercase;
-  letter-spacing: 0.14em;
+  letter-spacing: 0.12em;
   color: #ffd8a8;
 }
 
