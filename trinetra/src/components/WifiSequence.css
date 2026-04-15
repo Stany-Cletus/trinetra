@@ -1,0 +1,664 @@
+@import url('https://fonts.googleapis.com/css2?family=Segoe+UI:wght@400;600&family=Share+Tech+Mono&family=Cinzel+Decorative:wght@700&display=swap');
+
+/* ── Root ── */
+.wifi-seq-root {
+  position: fixed;
+  inset: 0;
+  z-index: 400;
+  font-family: 'Segoe UI', 'Helvetica Neue', sans-serif;
+  animation: wsFadeIn 0.5s ease forwards;
+}
+
+@keyframes wsFadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.ws-wallpaper {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0.5;
+  filter: blur(2px) brightness(0.6) saturate(0.5);
+}
+
+.ws-wallpaper-tint {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(0,0,20,0.6) 0%, rgba(10,0,30,0.4) 100%);
+}
+
+/* ── Windows 11 Taskbar ── */
+.ws-taskbar {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 48px;
+  background: rgba(20, 20, 30, 0.85);
+  backdrop-filter: blur(20px) saturate(1.5);
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 16px;
+  z-index: 1000;
+}
+
+/* Left — weather */
+.ws-tb-left {
+  flex: 1;
+  display: flex;
+  align-items: center;
+}
+
+.ws-weather {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 4px 10px;
+  border-radius: 4px;
+  cursor: default;
+  transition: background 0.2s;
+}
+
+.ws-weather:hover {
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.ws-weather-icon {
+  font-size: 20px;
+}
+
+.ws-weather-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.ws-weather-temp {
+  font-size: 13px;
+  color: #fff;
+  font-weight: 600;
+  line-height: 1.2;
+}
+
+.ws-weather-loc {
+  font-size: 10px;
+  color: rgba(255, 255, 255, 0.5);
+}
+
+/* Center */
+.ws-tb-center {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex: 1;
+  justify-content: center;
+}
+
+.ws-win-btn {
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  border-radius: 4px;
+  transition: background 0.2s;
+}
+
+.ws-win-btn:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.ws-search-bar {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 16px;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 20px;
+  width: 220px;
+  cursor: text;
+  transition: background 0.2s;
+}
+
+.ws-search-bar:hover {
+  background: rgba(255, 255, 255, 0.12);
+}
+
+.ws-search-icon {
+  font-size: 12px;
+}
+
+.ws-search-placeholder {
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.45);
+}
+
+.ws-taskbar-app {
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 4px;
+  cursor: pointer;
+  position: relative;
+  transition: background 0.2s;
+}
+
+.ws-taskbar-app:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.ws-taskbar-app.active::after {
+  content: '';
+  position: absolute;
+  bottom: 2px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 16px;
+  height: 3px;
+  border-radius: 2px;
+  background: #4fc3f7;
+}
+
+.ws-app-indicator {
+  display: none;
+}
+
+/* Right */
+.ws-tb-right {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 4px;
+}
+
+.ws-tb-icons {
+  display: flex;
+  align-items: center;
+}
+
+.ws-wifi-icon-btn {
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  border-radius: 4px;
+  transition: background 0.2s;
+}
+
+.ws-wifi-icon-btn:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.ws-clock {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 4px 8px;
+  border-radius: 4px;
+  cursor: default;
+  transition: background 0.2s;
+  min-width: 60px;
+}
+
+.ws-clock:hover {
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.ws-time {
+  font-size: 13px;
+  color: #fff;
+  font-weight: 500;
+  line-height: 1.3;
+}
+
+.ws-date {
+  font-size: 11px;
+  color: rgba(255, 255, 255, 0.6);
+  line-height: 1.3;
+}
+
+/* ── Wi-Fi Panel ── */
+.ws-wifi-panel {
+  position: absolute;
+  bottom: 56px;
+  right: 80px;
+  width: 340px;
+  background: rgba(28, 28, 38, 0.95);
+  backdrop-filter: blur(24px) saturate(1.5);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  box-shadow: 0 8px 40px rgba(0, 0, 0, 0.6);
+  z-index: 900;
+  animation: panelSlide 0.25s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  overflow: hidden;
+}
+
+@keyframes panelSlide {
+  from { opacity: 0; transform: translateY(12px) scale(0.97); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+.ws-wifi-panel-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 20px 12px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.ws-wifi-panel-header span {
+  font-size: 14px;
+  font-weight: 600;
+  color: #fff;
+}
+
+.ws-wifi-toggle {
+  padding: 4px 16px;
+  background: #0078d4;
+  border: none;
+  border-radius: 12px;
+  color: #fff;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.ws-wifi-list {
+  padding: 8px 0;
+  max-height: 280px;
+  overflow-y: auto;
+}
+
+.ws-wifi-item {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 10px 20px;
+  cursor: pointer;
+  transition: background 0.15s;
+}
+
+.ws-wifi-item:hover {
+  background: rgba(255, 255, 255, 0.06);
+}
+
+.ws-wifi-item:hover .ws-wifi-connect-btn {
+  opacity: 1;
+}
+
+.ws-wifi-info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.ws-wifi-ssid {
+  font-size: 13px;
+  color: #fff;
+  font-weight: 500;
+}
+
+.ws-wifi-note {
+  font-size: 11px;
+  color: rgba(255, 255, 255, 0.45);
+}
+
+.ws-wifi-connect-btn {
+  opacity: 0;
+  padding: 4px 14px;
+  background: #0078d4;
+  border: none;
+  border-radius: 4px;
+  color: #fff;
+  font-size: 12px;
+  cursor: pointer;
+  transition: opacity 0.2s;
+}
+
+/* Wifi signal bars */
+.wsig {
+  display: flex;
+  align-items: flex-end;
+  gap: 2px;
+  height: 18px;
+  position: relative;
+}
+
+.wsig-bar {
+  width: 4px;
+  border-radius: 1px;
+  background: rgba(255, 255, 255, 0.2);
+  transition: background 0.2s;
+}
+
+.wsig-bar.active {
+  background: #fff;
+}
+
+.wsig-lock {
+  font-size: 9px;
+  position: absolute;
+  bottom: -1px;
+  right: -10px;
+}
+
+/* ── Connecting ── */
+.ws-connecting {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  color: #fff;
+  z-index: 500;
+}
+
+.ws-conn-spinner {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  border: 3px solid rgba(0, 120, 212, 0.2);
+  border-top-color: #0078d4;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+.ws-connecting p {
+  font-size: 14px;
+  color: rgba(255,255,255,0.8);
+  font-family: 'Share Tech Mono', monospace;
+  letter-spacing: 0.1em;
+}
+
+/* ── Password Modal ── */
+.ws-password-modal {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 800;
+}
+
+.ws-pass-card {
+  width: 380px;
+  background: rgba(22, 22, 32, 0.97);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 12px;
+  padding: 32px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  box-shadow: 0 16px 60px rgba(0,0,0,0.7);
+  animation: modalPop 0.3s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+@keyframes modalPop {
+  from { transform: scale(0.92); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
+
+.ws-pass-title {
+  font-size: 17px;
+  font-weight: 600;
+  color: #fff;
+}
+
+.ws-pass-ssid {
+  font-size: 13px;
+  color: rgba(255,255,255,0.5);
+}
+
+.ws-pass-input {
+  width: 100%;
+  padding: 10px 14px;
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.15);
+  border-radius: 6px;
+  color: #fff;
+  font-size: 14px;
+  font-family: 'Share Tech Mono', monospace;
+  outline: none;
+  transition: border-color 0.2s;
+}
+
+.ws-pass-input:focus {
+  border-color: #0078d4;
+  box-shadow: 0 0 0 2px rgba(0, 120, 212, 0.25);
+}
+
+.ws-pass-error {
+  font-size: 12px;
+  color: #ff6b6b;
+  font-family: 'Share Tech Mono', monospace;
+}
+
+.ws-pass-actions {
+  display: flex;
+  gap: 10px;
+  justify-content: flex-end;
+}
+
+.ws-pass-cancel {
+  padding: 8px 20px;
+  background: transparent;
+  border: 1px solid rgba(255,255,255,0.2);
+  border-radius: 6px;
+  color: rgba(255,255,255,0.7);
+  font-size: 13px;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.ws-pass-cancel:hover {
+  background: rgba(255,255,255,0.07);
+}
+
+.ws-pass-submit {
+  padding: 8px 20px;
+  background: #0078d4;
+  border: none;
+  border-radius: 6px;
+  color: #fff;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.ws-pass-submit:hover {
+  background: #106ebe;
+}
+
+/* ── Pay Modal ── */
+.ws-pay-modal {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 800;
+}
+
+.ws-pay-card {
+  width: 400px;
+  background: rgba(10, 8, 20, 0.97);
+  border: 1px solid rgba(255, 215, 0, 0.2);
+  border-radius: 12px;
+  padding: 40px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  box-shadow: 0 16px 60px rgba(0,0,0,0.8), 0 0 40px rgba(255,215,0,0.05);
+  animation: modalPop 0.3s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+.ws-pay-icon {
+  font-size: 32px;
+  color: #ffd700;
+  text-shadow: 0 0 16px rgba(255,215,0,0.5);
+}
+
+.ws-pay-title {
+  font-family: 'Cinzel Decorative', serif;
+  font-size: 16px;
+  color: #ffd700;
+  letter-spacing: 0.2em;
+}
+
+.ws-pay-desc {
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 12px;
+  color: rgba(220,220,180,0.75);
+  text-align: center;
+  line-height: 1.7;
+  letter-spacing: 0.03em;
+}
+
+.ws-pay-amount {
+  font-family: 'Cinzel Decorative', serif;
+  font-size: 22px;
+  color: #ffd700;
+  text-shadow: 0 0 16px rgba(255,215,0,0.4);
+}
+
+.ws-pay-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 100%;
+  margin-top: 8px;
+}
+
+.ws-pay-cancel {
+  padding: 10px;
+  background: rgba(0, 120, 212, 0.15);
+  border: 1px solid rgba(0,120,212,0.3);
+  border-radius: 6px;
+  color: #4fc3f7;
+  font-size: 13px;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.ws-pay-cancel:hover {
+  background: rgba(0,120,212,0.25);
+}
+
+.ws-pay-confirm {
+  padding: 10px;
+  background: rgba(255, 215, 0, 0.12);
+  border: 1px solid rgba(255,215,0,0.3);
+  border-radius: 6px;
+  color: #ffd700;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.ws-pay-confirm:hover {
+  background: rgba(255,215,0,0.22);
+}
+
+/* ── Narrator ── */
+.ws-narrator-wrap {
+  position: absolute;
+  bottom: 72px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 700;
+  width: 680px;
+}
+
+.narrator-box {
+  background: rgba(5, 0, 10, 0.94);
+  border: 1px solid rgba(139, 0, 0, 0.5);
+  border-radius: 4px;
+  padding: 24px 28px;
+  box-shadow: 0 0 40px rgba(139,0,0,0.15);
+  animation: narratorSlide 0.4s ease forwards;
+}
+
+@keyframes narratorSlide {
+  from { opacity: 0; transform: translateY(12px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.narrator-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 12px;
+}
+
+.narrator-icon {
+  color: #8b0000;
+  font-size: 12px;
+}
+
+.narrator-label {
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.2em;
+  color: rgba(139, 0, 0, 0.6);
+}
+
+.narrator-text {
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 14px;
+  color: rgba(220, 200, 200, 0.9);
+  line-height: 1.7;
+  letter-spacing: 0.03em;
+  min-height: 48px;
+}
+
+.narrator-cursor {
+  animation: cursorBlink 0.7s step-end infinite;
+  color: #cc0000;
+  font-size: 12px;
+}
+
+@keyframes cursorBlink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+.narrator-btn {
+  margin-top: 16px;
+  padding: 8px 28px;
+  background: rgba(139,0,0,0.15);
+  border: 1px solid rgba(139,0,0,0.4);
+  color: #cc0000;
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 12px;
+  letter-spacing: 0.15em;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.narrator-btn:hover {
+  background: rgba(139,0,0,0.3);
+  border-color: #cc0000;
+}
