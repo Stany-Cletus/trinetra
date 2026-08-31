@@ -286,8 +286,12 @@ export default function Level2Game({ onComplete }) {
     }, 1400 + Math.random()*600);
   }, [inputVal, activeChat, chatHistories, vedaExchanges, vedaDone, blockedChats, hackedChats]);
 
-  const handleKeyDown = (e) => { if (e.key === "Enter") handleSend(); };
-
+ const handleKeyDown = (e) => {
+  if (e.key === "Enter") {
+    e.preventDefault();
+    handleSend();
+  }
+};
   const currentHistory = chatHistories[activeChat] || [];
   const isBlocked = blockedChats[activeChat];
   const isHacked  = hackedChats[activeChat];
@@ -396,14 +400,20 @@ export default function Level2Game({ onComplete }) {
                   <div className="l2g-dc-input-off l2g-dc-input-hacked">This conversation has been flagged.</div>
                 ) : (
                   <>
-                    <input
+                  <input
                       ref={inputRef}
                       className="l2g-dc-input"
+                      type="text"
+                      inputMode="text"
+                      autoComplete="off"
+                      autoCorrect="off"
+                      autoCapitalize="sentences"
+                      spellCheck="false"
                       placeholder={`Message ${currentNpc?.name}…`}
                       value={inputVal}
                       onChange={e => setInputVal(e.target.value)}
                       onKeyDown={handleKeyDown}
-                      autoComplete="off"
+                      
                     />
                     <button className="l2g-dc-send" onClick={handleSend} disabled={!inputVal.trim()}>
                       ➤
@@ -809,29 +819,92 @@ function MazeGame({ onSolve, solved }) {
 
   useEffect(() => { draw(); }, [pos, draw]);
 
-  useEffect(() => {
-    const handleKey = (e) => {
-      if (solved) return;
-      const dirs = {
-        ArrowUp: { dr:-1, dc:0 }, ArrowDown: { dr:1, dc:0 },
-        ArrowLeft: { dr:0, dc:-1 }, ArrowRight: { dr:0, dc:1 },
-        w: { dr:-1, dc:0 }, s: { dr:1, dc:0 },
-        a: { dr:0, dc:-1 }, d: { dr:0, dc:1 },
-      };
-      const dir = dirs[e.key];
-      if (!dir) return;
-      e.preventDefault();
-      const cur = posRef.current;
-      const nr = cur.r + dir.dr, nc = cur.c + dir.dc;
-      if (nr < 0 || nr >= MAZE.length || nc < 0 || nc >= MAZE[0].length) return;
-      if (MAZE[nr][nc] === 1) return;
-      const newPos = { r:nr, c:nc };
-      setPos(newPos);
-      if (nr === MAZE_END.r && nc === MAZE_END.c) onSolve();
+ useEffect(() => {
+  const handleKey = (e) => {
+    if (solved) return;
+
+    // Do not interfere with text fields.
+    const target = e.target;
+
+    if (
+      target instanceof HTMLInputElement ||
+      target instanceof HTMLTextAreaElement ||
+      target instanceof HTMLSelectElement ||
+      target.isContentEditable
+    ) {
+      return;
+    }
+
+    const dirs = {
+      ArrowUp: { dr: -1, dc: 0 },
+      ArrowDown: { dr: 1, dc: 0 },
+      ArrowLeft: { dr: 0, dc: -1 },
+      ArrowRight: { dr: 0, dc: 1 },
+
+      w: { dr: -1, dc: 0 },
+      W: { dr: -1, dc: 0 },
+
+      s: { dr: 1, dc: 0 },
+      S: { dr: 1, dc: 0 },
+
+      a: { dr: 0, dc: -1 },
+      A: { dr: 0, dc: -1 },
+
+      d: { dr: 0, dc: 1 },
+      D: { dr: 0, dc: 1 },
     };
-    window.addEventListener("keydown", handleKey);
-    return () => window.removeEventListener("keydown", handleKey);
-  }, [solved, onSolve]);
+
+    const dir = dirs[e.key];
+
+    if (!dir) return;
+
+    e.preventDefault();
+
+    const cur = posRef.current;
+
+    const nr = cur.r + dir.dr;
+    const nc = cur.c + dir.dc;
+
+    if (
+      nr < 0 ||
+      nr >= MAZE.length ||
+      nc < 0 ||
+      nc >= MAZE[0].length
+    ) {
+      return;
+    }
+
+    if (MAZE[nr][nc] === 1) {
+      return;
+    }
+
+    const newPos = {
+      r: nr,
+      c: nc,
+    };
+
+    setPos(newPos);
+
+    if (
+      nr === MAZE_END.r &&
+      nc === MAZE_END.c
+    ) {
+      onSolve();
+    }
+  };
+
+  window.addEventListener(
+    "keydown",
+    handleKey
+  );
+
+  return () => {
+    window.removeEventListener(
+      "keydown",
+      handleKey
+    );
+  };
+}, [solved, onSolve]);
 
   return (
     <div className="l2g-maze-inner">
