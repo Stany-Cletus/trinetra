@@ -1,7 +1,13 @@
 import { useState, useEffect, useRef } from "react";
+
 import Level1Game from "./Level1Game";
 import WifiSequence from "./WifiSequence";
-import "./Level1.css";
+import EthicalDilemma from "./EthicalDilemma";
+
+import "./Level1.css";  
+
+import { useGame } from "../context/GameContext";
+
 
 const SUBSTAGE = {
   LANDING: "landing",
@@ -9,19 +15,32 @@ const SUBSTAGE = {
   GAME: "game",
   BUFFER: "buffer",
   WIFI: "wifi",
+  ETHICAL_DILEMMA: "ethical_dilemma",
   ENDING: "ending",
 };
 
 export default function Level1({ onComplete }) {
   const [substage, setSubstage] = useState(SUBSTAGE.LANDING);
+
   const [logoAnimDone, setLogoAnimDone] = useState(false);
+
   const [gameCoins, setGameCoins] = useState(0);
+
   const [collectedLetters, setCollectedLetters] = useState([]);
 
+  const {
+    recordSkillResult,
+    addTelemetry,
+  } = useGame();
+
   useEffect(() => {
-    const t = setTimeout(() => setLogoAnimDone(true), 2200);
+    const t = setTimeout(() => {
+      setLogoAnimDone(true);
+    }, 2200);
+
     return () => clearTimeout(t);
   }, []);
+
 
   return (
     <div className="level1-root">
@@ -58,8 +77,15 @@ export default function Level1({ onComplete }) {
             setCollectedLetters(letters);
             setSubstage(SUBSTAGE.BUFFER);
           }}
-          onSkip={() => setSubstage(SUBSTAGE.BUFFER)}
-        />
+            onSkip={() => {
+              addTelemetry({
+                level: 1,
+                phase: "skill_game",
+                action: "skipped",
+              });
+
+              setSubstage(SUBSTAGE.BUFFER);
+            }}       />
       )}
 
       {substage === SUBSTAGE.BUFFER && (
@@ -508,3 +534,5 @@ function BufferScreen({ onDone }) {
     </div>
   );
 }
+
+

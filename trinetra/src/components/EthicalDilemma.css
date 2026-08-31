@@ -1,0 +1,402 @@
+* {
+  box-sizing: border-box;
+}
+
+.ethical-dilemma {
+  width: 100%;
+  min-height: 100dvh;
+
+  padding:
+    max(18px, env(safe-area-inset-top))
+    16px
+    max(24px, env(safe-area-inset-bottom))
+    16px;
+
+  background: #05070d;
+
+  color: #ffffff;
+
+  font-family:
+    Arial,
+    Helvetica,
+    sans-serif;
+
+  display: flex;
+  justify-content: center;
+}
+
+.dilemma-card {
+  width: 100%;
+  max-width: 520px;
+
+  margin: auto 0;
+
+  padding: 22px 18px;
+
+  border: 1px solid rgba(0, 255, 225, 0.2);
+
+  background:
+    linear-gradient(
+      180deg,
+      rgba(12, 19, 30, 0.98),
+      rgba(5, 9, 15, 0.98)
+    );
+
+  border-radius: 22px;
+
+  box-shadow:
+    0 20px 60px rgba(0, 0, 0, 0.5);
+}
+
+/* TOP */
+
+.dilemma-topbar {
+  display: flex;
+  justify-content: space-between;
+
+  gap: 10px;
+
+  font-size: 10px;
+
+  letter-spacing: 1.5px;
+
+  color: #00ffe1;
+
+  margin-bottom: 25px;
+}
+
+/* TITLE */
+
+.dilemma-eyebrow {
+  display: block;
+
+  font-size: 11px;
+
+  letter-spacing: 2px;
+
+  color: #7f8b98;
+
+  margin-bottom: 7px;
+}
+
+.dilemma-heading h1 {
+  margin: 0;
+
+  font-size: clamp(32px, 10vw, 48px);
+
+  line-height: 0.95;
+
+  letter-spacing: -1px;
+}
+
+/* STORY */
+
+.story-card {
+  margin-top: 25px;
+
+  padding: 17px;
+
+  background: rgba(255, 255, 255, 0.04);
+
+  border-radius: 14px;
+}
+
+.story-card p {
+  margin: 0;
+
+  font-size: 16px;
+
+  line-height: 1.55;
+
+  color: #d7dee5;
+}
+
+/* TENSION */
+
+.tension-card {
+  display: flex;
+
+  gap: 12px;
+
+  margin-top: 12px;
+
+  padding: 15px;
+
+  border-radius: 14px;
+
+  background: rgba(255, 196, 0, 0.06);
+
+  border: 1px solid rgba(255, 196, 0, 0.18);
+}
+
+.tension-icon {
+  flex-shrink: 0;
+
+  font-size: 20px;
+}
+
+.tension-card p {
+  margin: 0;
+
+  font-size: 14px;
+
+  line-height: 1.5;
+
+  color: #d6d9dc;
+}
+
+/* QUESTION */
+
+.question {
+  margin:
+
+    27px 0 15px;
+
+  font-size: 20px;
+
+  line-height: 1.3;
+}
+
+/* CHOICES */
+
+.choices {
+  display: flex;
+
+  flex-direction: column;
+
+  gap: 11px;
+}
+
+.choice-button {
+  width: 100%;
+
+  min-height: 74px;
+
+  display: flex;
+
+  align-items: center;
+
+  gap: 12px;
+
+  padding: 13px;
+
+  border-radius: 15px;
+
+  border: 1px solid rgba(255, 255, 255, 0.12);
+
+  background: rgba(255, 255, 255, 0.045);
+
+  color: white;
+
+  text-align: left;
+
+  cursor: pointer;
+
+  -webkit-tap-highlight-color:
+    transparent;
+
+  transition:
+    transform 0.15s,
+    background 0.15s,
+    border-color 0.15s;
+}
+
+.choice-button:active {
+  transform: scale(0.98);
+
+  background:
+    rgba(0, 255, 225, 0.08);
+
+  border-color:
+    rgba(0, 255, 225, 0.5);
+}
+
+.choice-number {
+  width: 38px;
+
+  height: 38px;
+
+  flex-shrink: 0;
+
+  display: grid;
+
+  place-items: center;
+
+  border-radius: 10px;
+
+  background: rgba(0, 255, 225, 0.08);
+
+  color: #00ffe1;
+
+  font-weight: bold;
+}
+
+.choice-text {
+  flex: 1;
+
+  display: flex;
+
+  flex-direction: column;
+
+  gap: 4px;
+}
+
+.choice-text strong {
+  font-size: 15px;
+}
+
+.choice-text span {
+  font-size: 12px;
+
+  line-height: 1.35;
+
+  color: #929ca7;
+}
+
+.choice-arrow {
+  font-size: 27px;
+
+  color: #00ffe1;
+}
+
+/* RESULT */
+
+.result {
+  padding-top: 20px;
+
+  animation:
+    resultIn 0.35s ease;
+}
+
+@keyframes resultIn {
+  from {
+    opacity: 0;
+
+    transform:
+      translateY(15px);
+  }
+
+  to {
+    opacity: 1;
+
+    transform:
+      translateY(0);
+  }
+}
+
+.result-label {
+  font-size: 10px;
+
+  letter-spacing: 2px;
+
+  color: #00ffe1;
+}
+
+.result h2 {
+  margin: 8px 0 22px;
+
+  font-size: 30px;
+}
+
+/* CONSEQUENCE */
+
+.consequence {
+  padding: 18px;
+
+  border-radius: 15px;
+
+  background: rgba(255, 255, 255, 0.04);
+
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.consequence span {
+  font-size: 10px;
+
+  letter-spacing: 2px;
+
+  color: #00ffe1;
+}
+
+.consequence p {
+  margin: 10px 0 0;
+
+  font-size: 15px;
+
+  line-height: 1.6;
+
+  color: #d2d9df;
+}
+
+/* BUTTONS */
+
+.secondary-button,
+.continue-button {
+  width: 100%;
+
+  min-height: 54px;
+
+  margin-top: 16px;
+
+  padding: 13px 16px;
+
+  border-radius: 13px;
+
+  font-size: 12px;
+
+  font-weight: bold;
+
+  letter-spacing: 0.7px;
+
+  cursor: pointer;
+
+  -webkit-tap-highlight-color:
+    transparent;
+}
+
+.secondary-button {
+  border: 1px solid #00ffe1;
+
+  background: transparent;
+
+  color: #00ffe1;
+}
+
+.continue-button {
+  border: none;
+
+  background: #00ffe1;
+
+  color: #04100f;
+}
+
+.secondary-button:active,
+.continue-button:active {
+  transform: scale(0.98);
+}
+
+/* SMALL PHONES */
+
+@media (max-height: 700px) {
+
+  .dilemma-card {
+    padding-top: 16px;
+    padding-bottom: 16px;
+  }
+
+  .dilemma-topbar {
+    margin-bottom: 17px;
+  }
+
+  .story-card {
+    margin-top: 17px;
+  }
+
+  .question {
+    margin-top: 18px;
+  }
+
+  .choice-button {
+    min-height: 64px;
+  }
+}
