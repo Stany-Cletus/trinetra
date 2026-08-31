@@ -1047,3 +1047,158 @@
   text-align: center;
   font-style: italic;
 }
+
+/* =========================================
+   TRINETRA MOBILE OVERRIDES
+   ========================================= */
+
+@media (max-width: 600px) {
+
+  .level1-root {
+    position: fixed;
+    inset: 0;
+
+    width: 100%;
+    height: 100dvh;
+
+    overflow-y: auto;
+    overflow-x: hidden;
+  }
+
+  .level1-bg {
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+  }
+
+  .logo-center .l1-logo-img {
+    width: min(78vw, 360px);
+  }
+
+  .logo-topleft {
+    top:
+      max(16px, env(safe-area-inset-top));
+
+    left: 18px;
+  }
+
+  .logo-topleft .l1-logo-img {
+    width: min(42vw, 190px);
+  }
+
+  .l1-landing-content {
+    top: auto;
+    left: 50%;
+
+    bottom:
+      calc(
+        12% +
+        env(safe-area-inset-bottom)
+      );
+
+    width: calc(100% - 32px);
+
+    transform: translateX(-50%);
+
+    z-index: 20;
+  }
+
+  .l1-enter-btn {
+    width: 100%;
+
+    min-height: 58px;
+
+    justify-content: center;
+
+    padding: 16px 20px;
+  }
+
+  .l1-btn-text {
+    font-size: 12px;
+
+    letter-spacing: 0.18em;
+  }
+
+  .captcha-card {
+    width: calc(100% - 28px);
+
+    max-height: 90dvh;
+
+    overflow-y: auto;
+  }
+
+  .captcha-body {
+    padding: 28px 20px;
+  }
+
+  .captcha-heading {
+    font-size: 16px;
+
+    letter-spacing: 0.12em;
+  }
+
+  .captcha-start-btn {
+    width: 100%;
+
+    min-height: 54px;
+
+    padding: 14px 20px;
+  }
+
+  .buffer-inner,
+  .buffer-connect-inner {
+    width: calc(100% - 40px);
+
+    text-align: center;
+  }
+
+  .buffer-wifi-btn {
+    width: 100%;
+
+    min-height: 54px;
+
+    justify-content: center;
+  }
+
+  .l1-ending {
+    overflow-y: auto;
+
+    padding:
+      20px
+      14px
+      30px;
+  }
+
+  .l1-breach-layout,
+  .l1-threat-layout {
+    width: 100%;
+
+    display: flex;
+
+    flex-direction: column;
+  }
+
+  .l1-breach-left,
+  .l1-breach-right,
+  .l1-threat-box {
+    width: 100%;
+  }
+
+}
+
+/* =========================================
+   SMALL PHONES
+   ========================================= */
+
+@media (max-width: 380px) {
+
+  .l1-btn-text {
+    font-size: 10px;
+  }
+
+  .captcha-body {
+    padding: 22px 16px;
+  }
+
+}
